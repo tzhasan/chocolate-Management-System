@@ -16,15 +16,20 @@ const AllChocolateCard = ({ chocolate, index,setChocolates,chocolates }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/chocolates/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://chocolate-management-server-tzhasan.vercel.app/chocolates/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              const remainingChocolates = chocolates.filter(c => c._id !== _id)
-              setChocolates(remainingChocolates)
+              const remainingChocolates = chocolates.filter(
+                (c) => c._id !== _id
+              );
+              setChocolates(remainingChocolates);
             }
           });
       }

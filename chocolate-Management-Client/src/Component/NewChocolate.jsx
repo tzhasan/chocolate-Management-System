@@ -1,25 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import React from "react";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const NewChocolate = () => {
   const handleSave = (e) => {
-    e.preventDefault()
-    const form = e.target
-    const name = form.name.value
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
     const country = form.country.value;
     const category = form.category.value;
-    const NewChocolate = { name, country, category }
+    const NewChocolate = { name, country, category };
     console.log(NewChocolate);
-    fetch("http://localhost:5000/chocolates", {
+    fetch("https://chocolate-management-server-tzhasan.vercel.app/chocolates", {
       method: "POST",
       headers: {
-        'content-type': 'application/json'
+        "content-type": "application/json",
       },
-      body: JSON.stringify(NewChocolate)
+      body: JSON.stringify(NewChocolate),
     })
-    .then(res=>res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.insertedId) {
           Swal.fire({
             title: "New Chocolate added",
@@ -27,9 +27,10 @@ const NewChocolate = () => {
             icon: "success",
             confirmButtonText: "OK",
           });
-        } console.log(data);
-    })
-  }
+        }
+        console.log(data);
+      });
+  };
   return (
     <div className="p-10">
       <h2 className="text-4xl text-center my-6 font-bold text-orange-900">
@@ -74,14 +75,14 @@ const NewChocolate = () => {
             <label className="label">
               <span className="label-text">Category</span>
             </label>
-            <select className="select select-bordered" name='category'>
-              <option >Premium</option>
+            <select className="select select-bordered" name="category">
+              <option>Premium</option>
               <option>Artisanal chocolate</option>
               <option>Organic chocolate</option>
               <option>Novelty chocolate</option>
             </select>
           </div>
-          <button className='btn w-full mt-6'>Save</button>
+          <button className="btn w-full mt-6">Save</button>
         </form>
       </div>
     </div>

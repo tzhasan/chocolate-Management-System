@@ -14,13 +14,16 @@ const UpdateData = () => {
     const country = form.country.value;
     const category = form.category.value;
     const NewChocolate = { name, country, category };
-    fetch(`http://localhost:5000/chocolates/${chocolate._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(NewChocolate),
-    })
+    fetch(
+      `https://chocolate-management-server-tzhasan.vercel.app/chocolates/${chocolate._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(NewChocolate),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.matchedCount) {
